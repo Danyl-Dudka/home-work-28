@@ -17,14 +17,22 @@ typeLaptops.addEventListener('click', function () {
     productsInfo.textContent = '';
 });
 
-function handleProductClick (event) {
+function handleProductClick(event) {
     const productName = event.target.getAttribute('data-name');
     const productPrice = event.target.getAttribute('data-price');
+
+    productsInfo.innerHTML = `This is ${productName}. Price: $${productPrice}`;
     
-    productsInfo.textContent = `This is ${productName}. Price: $${productPrice}`;
-    
-    productsInfo.innerHTML += generateSliderLayout();
+    productsInfo.innerHTML += generateSliderLayout(productName);
+
+    initializeSlider();
 }
-document.querySelectorAll('.product').forEach((product) => {
-    product.addEventListener('click', handleProductClick);
+
+document.querySelectorAll(".product").forEach(item => {
+    item.addEventListener("click", handleProductClick);
+});
+document.querySelectorAll(".product").forEach(item => {
+    item.addEventListener("click", () => {
+        document.querySelector(".products_info").innerHTML = generateSliderLayout(item.dataset.name);
+    });
 });
