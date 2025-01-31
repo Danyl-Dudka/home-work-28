@@ -33,6 +33,39 @@
         </div>
         <div class="products_info"></div>
     </div>
+    <div class="finish_order hidden">
+        <div class="result_letter">
+            <h4>Congratulations! You bought a product!</h4>
+        </div>
+        <div class="order_form">
+            <h4>Please fill out your order form</h4>
+            <form name="order">
+                <div>
+                    <input type="text" name="name" placeholder="Your name">
+                </div>
+                <div>
+                    <input type="number" name="order_amount" placeholder="Amount" min="1">
+                </div>
+                <div>
+                    <input type="text" name="phone" placeholder="Phone number">
+                </div>
+                <div>
+                    <select name="city">
+                        <option value="-1">Select your city</option>
+                        <option value="1">Odessa</option>
+                        <option value="2">Kyiv</option>
+                        <option value="3">Kharkiv</option>
+                        <option value="4">Sumy</option>
+                    </select>
+                </div>
+                <div>
+                    <button type="button" class="finish_button">
+                        Order now!
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
     <script src="slider.js"></script>
     <script src="app.js"></script>
 </body>

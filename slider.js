@@ -31,7 +31,6 @@ const interval = 3000;
 let slideInterval;
 
 function startSlider() {
-  clearInterval(slideInterval);
   slideInterval = setInterval(nextSlide, interval);
 }
 
@@ -39,6 +38,10 @@ function nextSlide() {
   clearInterval(slideInterval);
   const slides = document.querySelectorAll('.slide');
   const indicators = document.querySelectorAll('.indicator');
+
+  if (!slides || !indicators || slides.length === 0 || indicators.length === 0) {
+    return;
+  }
 
   slides[currentSlide].classList.remove('active');
   indicators[currentSlide].classList.remove('active');
