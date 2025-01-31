@@ -31,6 +31,7 @@ const interval = 3000;
 let slideInterval;
 
 function startSlider() {
+  clearInterval(slideInterval);
   slideInterval = setInterval(nextSlide, interval);
 }
 
