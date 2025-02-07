@@ -26,13 +26,40 @@ function showOrderForm() {
 }
 
 function orderFinished() {
-    document.querySelector('.finish_order').classList.add('hidden');
-    document.querySelector('.main').classList.remove('hidden');
+    let orderForm = document.forms[0];
 
-    phonesProducts.classList.remove('active');
-    laptopsProducts.classList.remove('active');
-    productsInfo.textContent = ''; 
+    let clientName = orderForm["name"].value;
+    let patternName = /^[A-Z]{1}[a-z]{1,14}$/
+    let resultName = patternName.test(clientName);
+
+    let clientAmount = orderForm["order_amount"].value;
+
+    let clientPhone = orderForm["phone"].value;
+    let patternPhone = /^\+380\d{9}$/
+    let resultPhone = patternPhone.test(clientPhone);
+
+    let clientCity = orderForm["city"].value;
+
+    if (resultName == false) {
+        alert("You have entered a incorrect name")
+    } else if (clientAmount < 1 || clientAmount > 10) {
+        alert("You have entered a wrong amount")
+    } else if (resultPhone == false) {
+        alert("Your phone number is incorrect")
+    } else if (clientCity == -1) {
+        alert("You haven't chosen your city")
+    } 
+    else {
+
+        document.querySelector('.finish_order').classList.add('hidden');
+        document.querySelector('.congrats_div').classList.remove('hidden');
+        document.querySelector('.finished_name').textContent = "Name: " + clientName +";";
+        document.querySelector('.finished_amount').textContent = "Amount: " + clientAmount +";";
+        document.querySelector('.finished_phone').textContent = "Phone number: " + clientPhone +";";
+        document.querySelector('.finished_city').textContent = "City: " + clientCity +";";
+    }
 }
+
 
 function handleProductClick(event) {
     const productName = event.target.getAttribute('data-name');
@@ -47,9 +74,9 @@ function handleProductClick(event) {
 
     setTimeout(() => {
         const buyBtn = document.querySelector('.buy-btn');
-            buyBtn.addEventListener('click', showOrderForm);
+        buyBtn.addEventListener('click', showOrderForm);
         const finishBtn = document.querySelector('.finish_button');
-            finishBtn.addEventListener('click', orderFinished);
+        finishBtn.addEventListener('click', orderFinished);
     }, 100);
 }
 document.querySelectorAll(".product").forEach(item => {
